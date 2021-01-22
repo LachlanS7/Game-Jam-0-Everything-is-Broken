@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Weapons/Cannonball.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 753.767, 45.0697 )
@@ -8,10 +9,11 @@ extents = Vector2( 753.767, 45.0697 )
 [node name="MainScene" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 474.185, 175.226 )
+position = Vector2( 156.704, 89.506 )
+weapon = ExtResource( 2 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 478.456, 535.456 )
+position = Vector2( 126.053, 213.213 )
 shape = SubResource( 1 )
