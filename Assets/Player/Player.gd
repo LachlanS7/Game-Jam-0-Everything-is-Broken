@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+onready var sprite = $Sprite
+onready var animation_player = $AnimationPlayer
 onready var weapon_manager = owner.get_node("WeaponsManager")
 
 var velocity = Vector2.ZERO
@@ -32,6 +34,19 @@ func _physics_process(delta):
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.y = Input.get_action_strength("jump")
+	
+	if is_on_floor():
+		if input_vector.y != 0:
+			animation_player.play("jump")
+		elif input_vector.x == 0:
+			animation_player.play("idle")
+		else:
+			animation_player.play("walk")
+		
+	if input_vector.x > 0:
+		sprite.flip_h = false
+	elif input_vector.x < 0:
+		sprite.flip_h = true
 	
 	velocity = velocity.move_toward(input_vector.normalized() * horizontal_speed, delta * acceleration)
 	
