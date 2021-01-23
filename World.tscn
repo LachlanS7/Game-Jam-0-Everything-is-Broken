@@ -1,13 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/Weapons/Dogshit.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Enemies/Enemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/Weapons/WeaponsManager.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/Weapons/Cannonball.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 208, 48 )
+extents = Vector2( 88, 48 )
 
 [node name="MainScene" type="Node2D"]
 
@@ -15,37 +12,31 @@ extents = Vector2( 208, 48 )
 position = Vector2( 156.704, 89.506 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-scale = Vector2( 3, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 208, 408 )
+position = Vector2( 144, 248 )
 shape = SubResource( 1 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2( 208, -48.0008 )
+position = Vector2( 119, -17 )
 shape = SubResource( 1 )
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2( 183.996, -1200 )
+position = Vector2( 118, -270 )
 shape = SubResource( 1 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-scale = Vector2( 3, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2( 208, -48 )
+position = Vector2( 146, -12 )
 shape = SubResource( 1 )
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 168, 344 )
+position = Vector2( 88, 176 )
 health = 50
-
-[node name="WeaponsManager" parent="." instance=ExtResource( 4 )]
-position = Vector2( 208, 120 )
-weapons = [ ExtResource( 5 ), ExtResource( 2 ) ]

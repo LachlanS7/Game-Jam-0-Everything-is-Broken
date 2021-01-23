@@ -6,4 +6,4 @@ var time : float = 0
 func _process(delta):
 	time += delta
 	y_position = sin(time * 5)
-	transform.origin.y = 2.5 * y_position
+	transform.origin.y = 3 * y_position
