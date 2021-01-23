@@ -53,21 +53,13 @@ func _physics_process(delta):
 		sprite.flip_h = false
 	elif input_vector.x < 0:
 		sprite.flip_h = true
-		
-	var temp = velocity.y
 	
 	velocity = velocity.move_toward(
-		(
-			Vector2(input_vector.normalized().x, 0) * horizontal_speed
-		).rotated(atan2(gravity.x, -gravity.y)), delta * acceleration)
-		
-	velocity.y = temp
+			Vector2(input_vector.normalized().x * horizontal_speed, velocity.y).rotated(atan2(gravity.x, -gravity.y)), delta * acceleration)
 	
 	velocity -= gravity * delta;
 	
 	velocity = move_and_slide(velocity, gravity.normalized())
 	
 	if is_on_floor() && input_vector.y != 0:
-		velocity = velocity + jump_strength * gravity.normalized()
-		
-	print(velocity.y)
+		velocity += jump_strength * gravity.normalized()
