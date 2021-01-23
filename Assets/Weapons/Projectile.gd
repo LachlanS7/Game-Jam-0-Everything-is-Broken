@@ -1,11 +1,11 @@
 extends KinematicBody2D
 
-export var target : Vector2 = Vector2.ZERO
-export var bounces: int = 200
+export var bounces: int
 export var damage : int
+export var speed: int
 
 var velocity : Vector2 = Vector2.ZERO
-var speed: int = 2000
+var target : Vector2 = Vector2.ZERO
 
 func _physics_process(delta):
 	velocity = target.normalized() * speed
