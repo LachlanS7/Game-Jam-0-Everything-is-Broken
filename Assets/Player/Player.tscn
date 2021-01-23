@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Player/marino.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Weapons/WeaponIcon.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 14, 15 )
@@ -24,6 +25,8 @@ graph_offset = Vector2( -102.471, 0 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 13
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -46,3 +49,6 @@ parameters/Idle/blend_position = Vector2( 0.956723, 0.845361 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="WeaponIcon" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, -30 )
