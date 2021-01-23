@@ -7,7 +7,7 @@
 [ext_resource path="res://Assets/Weapons/Cannonball.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 88, 48 )
+extents = Vector2( 208, 48 )
 
 [node name="MainScene" type="Node2D"]
 
@@ -15,33 +15,35 @@ extents = Vector2( 88, 48 )
 position = Vector2( 156.704, 89.506 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+scale = Vector2( 3, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 144, 248 )
+position = Vector2( 208, 408 )
 shape = SubResource( 1 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2( 119, -17 )
+position = Vector2( 208, -48.0008 )
 shape = SubResource( 1 )
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2( 118, -270 )
+position = Vector2( 183.996, -1200 )
 shape = SubResource( 1 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
+scale = Vector2( 3, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2( 146, -12 )
+position = Vector2( 208, -48 )
 shape = SubResource( 1 )
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 88, 176 )
+position = Vector2( 168, 344 )
 health = 50
 
 [node name="WeaponsManager" parent="." instance=ExtResource( 4 )]

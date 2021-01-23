@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
-export var health : int
+export (int) var health
+export (int) var speed
+
 #export () var weapon 	
 	
 func hit(damage : int):

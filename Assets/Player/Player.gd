@@ -6,7 +6,7 @@ onready var collision_shape = $CollisionShape2D
 onready var weapon_manager = owner.get_node("WeaponsManager")
 
 var velocity = Vector2.ZERO
-var gravity = Vector2(0, 1400)
+var gravity = Vector2(0, -1400)
 
 var horizontal_speed : int = 100
 var jump_strength : int = 500
@@ -32,7 +32,7 @@ func _input(event):
 		weapon_manager.equip_weapon(selected_weapon_id)
 
 func _physics_process(delta):
-	gravity = gravity.rotated(0.05 * delta)
+	#gravity = gravity.rotated(0.05 * delta)
 	
 	collision_shape.rotation = atan2(gravity.x, -gravity.y)
 	sprite.rotation = atan2(gravity.x, -gravity.y)
@@ -62,5 +62,3 @@ func _physics_process(delta):
 		velocity = velocity + jump_strength * gravity.normalized()
 	
 	velocity = move_and_slide(velocity, gravity.normalized())
-
-
