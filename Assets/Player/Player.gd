@@ -29,8 +29,8 @@ func _physics_process(delta):
 	
 	velocity -= gravity * delta;
 		
-	if test_move(global_transform, Vector2.DOWN) && input_vector.y != 0:
+	if is_on_floor() && input_vector.y != 0:
 		velocity.y = velocity.y - jump_strength
 		
-	velocity = move_and_slide(velocity)
+	velocity = move_and_slide(velocity, Vector2.UP)
 
