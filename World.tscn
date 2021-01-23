@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://GravityManager.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Enemies/Enemy.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -9,7 +10,7 @@ extents = Vector2( 88, 48 )
 [node name="MainScene" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 160, 88 )
+position = Vector2( 168, 88 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -40,3 +41,5 @@ shape = SubResource( 1 )
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
 position = Vector2( 88, 176 )
 health = 50
+
+[node name="GravityManager" parent="." instance=ExtResource( 2 )]
