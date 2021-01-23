@@ -20,6 +20,26 @@ position = Vector2( 156.704, 89.506 )
 position = Vector2( 144, 248 )
 shape = SubResource( 1 )
 
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2( 119, -17 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2( 118, -270 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( 146, -12 )
+shape = SubResource( 1 )
+
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
 position = Vector2( 88, 176 )
 health = 50

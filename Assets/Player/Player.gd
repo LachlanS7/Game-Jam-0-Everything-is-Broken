@@ -2,10 +2,11 @@ extends KinematicBody2D
 
 onready var sprite = $Sprite
 onready var animation_player = $AnimationPlayer
+onready var collision_shape = $CollisionShape2D
 onready var weapon_manager = owner.get_node("WeaponsManager")
 
 var velocity = Vector2.ZERO
-var gravity = Vector2(0, -1400)
+var gravity = Vector2(0, 1400)
 
 var horizontal_speed : int = 100
 var jump_strength : int = 500
@@ -31,6 +32,11 @@ func _input(event):
 		weapon_manager.equip_weapon(selected_weapon_id)
 
 func _physics_process(delta):
+	gravity = gravity.rotated(0.05 * delta)
+	
+	collision_shape.rotation = atan2(gravity.x, -gravity.y)
+	sprite.rotation = atan2(gravity.x, -gravity.y)
+	
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.y = Input.get_action_strength("jump")
@@ -48,13 +54,13 @@ func _physics_process(delta):
 	elif input_vector.x < 0:
 		sprite.flip_h = true
 	
-	velocity = velocity.move_toward(input_vector.normalized() * horizontal_speed, delta * acceleration)
+	velocity = velocity.move_toward((Vector2(input_vector.normalized().x, 0) * horizontal_speed).rotated(atan2(gravity.x, -gravity.y)), delta * acceleration)
 	
 	velocity -= gravity * delta;
 	
 	if is_on_floor() && input_vector.y != 0:
-		velocity.y = velocity.y - jump_strength
+		velocity = velocity + jump_strength * gravity.normalized()
 	
-	velocity = move_and_slide(velocity, Vector2.UP)
+	velocity = move_and_slide(velocity, gravity.normalized())
 
 
