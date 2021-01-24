@@ -4,7 +4,7 @@ onready var icon = owner.get_node("WeaponIcon")
 
 export (Array, PackedScene) var weapons
 
-var owned_weapons = [2, 5]
+var owned_weapons = [2, 0]
 
 func equip_weapon(id : int):
 	icon.get_node("Sprite").texture = weapons[id].instance().get_node("Sprite").texture

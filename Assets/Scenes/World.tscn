@@ -473,6 +473,7 @@ position = Vector2( 152, 104 )
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
 position = Vector2( 88, 128 )
 health = 50
+weapon_id = 1
 
 [node name="GravityManager" parent="." instance=ExtResource( 3 )]
 

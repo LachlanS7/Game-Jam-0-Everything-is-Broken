@@ -18,6 +18,9 @@ var max_health : int = 100
 
 var selected_weapon_id : int = 0
 
+func pickup(item_id):
+	weapon_manager.owned_weapons[item_id]+=1
+
 func _input(event):
 	if event.is_action_pressed("attack1"):
 			var t = event.position - get_canvas_transform().origin - global_position
@@ -63,6 +66,12 @@ func _physics_process(delta):
 	velocity -= gravity_manager.gravity * delta;
 	
 	velocity = move_and_slide(velocity, gravity_manager.gravity.normalized())
+	
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision.collider.is_in_group("item"):
+			weapon_manager.owned_weapons[collision.collider.item_id]+=1
+			collision.collider.queue_free()
 	
 	if is_on_floor() && input_vector.y != 0:
 		velocity += jump_strength * gravity_manager.gravity.normalized()
