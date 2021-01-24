@@ -1,0 +1,97 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/Scenes/WeaponIcon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Scenes/HeathBar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Scenes/Dogshit.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Scenes/Cannonball.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Scripts/Player.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Scripts/WeaponsManager.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Textures/player.png" type="Texture" id=7]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 7.0
+height = 18.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4.7, 4.8, 4.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "jump"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 10, 11 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "walk"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7, 8, 9 ]
+}
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 7 )
+hframes = 12
+frame = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/idle = SubResource( 2 )
+anims/jump = SubResource( 3 )
+anims/walk = SubResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="WeaponIcon" parent="." instance=ExtResource( 1 )]
+position = Vector2( -0.21022, -30 )
+
+[node name="WeaponsManager" type="Node2D" parent="."]
+script = ExtResource( 6 )
+weapons = [ ExtResource( 4 ), ExtResource( 3 ) ]
+
+[node name="HeathBar" parent="." instance=ExtResource( 2 )]
+margin_top = -21.0
+margin_bottom = -15.0

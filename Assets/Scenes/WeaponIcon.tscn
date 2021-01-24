@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Scripts/WeaponIcon.gd" type="Script" id=1]
+
+
+[sub_resource type="CurveTexture" id=1]
+
+[node name="WeaponIcon" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+script = ExtResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="Sprite"]
+position = Vector2( 0, 0.5 )
+scale = Vector2( 1, 21 )
+enabled = false
+texture = SubResource( 1 )
+color = Color( 0.929412, 0.439216, 0.0823529, 1 )
+energy = 16.0
