@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 onready var health_bar = $HeathBar
-onready var item : PackedScene = preload("res://Assets/Scenes/Item.tscn")
+onready var item : PackedScene = load("res://Assets/Scenes/Item.tscn")
 
 export (int) var health
 export (int) var speed
@@ -12,15 +12,17 @@ func hit(damage : int):
 	
 	if health <= 0:
 		on_death()
-		queue_free()
 	
 	health_bar.update_heathbar(health)
 	
 func on_death():
 	var i = item.instance()
-	i.set_item(weapon_id)
+	print()
 	owner.add_child(i)
-	i.get_node("Sprite").texture = owner.get_node("Player").get_node("WeaponsManager").weapons[weapon_id].instance().texture
+	i.transform = transform
+	i.set_item(weapon_id)
+	print(owner.name)
+	queue_free()
 
 	#b.set_item(weapon_id)
 	
