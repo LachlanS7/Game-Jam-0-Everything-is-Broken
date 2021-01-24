@@ -12,8 +12,8 @@ func equip_weapon(id : int):
 func attack(weapon_id: int, target: Vector2):
 	if weapons[weapon_id] && owned_weapons[weapon_id] > 0:			
 		var w = weapons[weapon_id].instance()
-		owner.add_child(w)
-		w.transform = transform
+		owner.owner.add_child(w)
+		w.transform = global_transform
 		w.set("target", target)
 		owned_weapons[weapon_id]-=1
 		
