@@ -9,7 +9,7 @@ onready var gravity_manager = owner.get_node("GravityManager")
 
 var velocity = Vector2.ZERO
 
-var horizontal_speed : int = 100
+var horizontal_speed : int = 200
 var jump_strength : int = 500
 var acceleration : int = 800
 

@@ -10,7 +10,6 @@ margin_right = 16.0
 margin_bottom = 3.0
 value = 100.0
 texture_progress = ExtResource( 2 )
-fill_mode = 6
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
