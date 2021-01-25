@@ -8,11 +8,10 @@ radius = 8.06226
 
 [node name="Cannonball" type="KinematicBody2D"]
 collision_layer = 16
-collision_mask = 5
+collision_mask = 17
 script = ExtResource( 2 )
-bounces = 100
-damage = 1000
-speed = 200
+damage = 50
+speed = 80
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

@@ -1,8 +1,11 @@
 extends KinematicBody2D
 
 onready var sprite = $Sprite
+onready var health_bar = $HeathBar
 onready var animation_player = $AnimationPlayer
 onready var collision_shape = $CollisionShape2D
+
+export (Array, int) var inventory
 
 onready var weapon_manager = $WeaponsManager
 onready var gravity_manager = owner.get_node("GravityManager")
@@ -17,6 +20,9 @@ var health : int = 100
 var max_health : int = 100
 
 var selected_weapon_id : int = 0
+
+func _ready():
+	weapon_manager.owned_weapons = inventory
 
 func pickup(item_id):
 	weapon_manager.owned_weapons[item_id]+=1
@@ -37,6 +43,16 @@ func _input(event):
 		if selected_weapon_id >= weapon_manager.weapons.size():
 			selected_weapon_id = 0
 		weapon_manager.equip_weapon(selected_weapon_id)
+
+func hit(damage: int):
+	health -= damage
+	health_bar.update_heathbar(health)
+	if health <= 0:
+		on_death()
+
+func on_death():
+	queue_free()
+	get_tree().root.get_child(0).reload_level()
 
 func _physics_process(delta):
 
@@ -61,7 +77,7 @@ func _physics_process(delta):
 		sprite.flip_h = true
 	
 	velocity = velocity.move_toward(
-			Vector2(input_vector.normalized().x * horizontal_speed, velocity.y).rotated(gravity_manager.get_angle()), delta * acceleration)
+		Vector2(input_vector.normalized().x * horizontal_speed, velocity.y).rotated(gravity_manager.get_angle()), delta * acceleration)
 	
 	velocity -= gravity_manager.gravity * delta;
 	
@@ -72,6 +88,8 @@ func _physics_process(delta):
 		if collision.collider.is_in_group("item"):
 			weapon_manager.owned_weapons[collision.collider.item_id]+=1
 			collision.collider.queue_free()
+		elif collision.collider.is_in_group("portal"):
+			get_tree().root.get_child(0).next_level()
 	
 	if is_on_floor() && input_vector.y != 0:
 		velocity += jump_strength * gravity_manager.gravity.normalized()
